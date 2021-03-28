@@ -15,7 +15,7 @@ setup(
       description="Generic classes to be re-used for all projects",
       long_description=readme,
       long_description_content_type="text/markdown",
-      url="",
+      url="https://github.com/danielgallagher8/generic.git",
       packages=find_packages(),
       install_requires=requirements,
       classifiers=[
