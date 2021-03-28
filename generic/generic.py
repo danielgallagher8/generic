@@ -23,7 +23,7 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
 
-#Defince classes
+#Define classes
 
 class Passwords:
     
