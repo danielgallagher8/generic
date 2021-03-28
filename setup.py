@@ -5,7 +5,7 @@ import generic
 with open("README.md", "r") as readme_file:
     readme = readme_file.read()
     
-requirements = ['pyodbc', 'keepercommander', 'datetime', 'ssl', 'email']
+requirements = ['pyodbc', 'keepercommander', 'datetime', 'email']
 
 setup(
       name="generic",
