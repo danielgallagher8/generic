@@ -27,7 +27,7 @@ from email.mime.multipart import MIMEMultipart
 
 class Passwords:
     
-    def __init__(self, name=None):
+    def __init__(self, name=None, custom=None):
         self.params = KeeperParams()
         self.read_config_file()
         api.sync_down(self.params)
@@ -35,6 +35,7 @@ class Passwords:
         self.info = self.get_login()
         self.username = self.info['secret1']
         self.password = self.info['secret2']
+        self.custom = self.get_custom(name=custom)
     
     def read_config_file(self):
         self.params.config_filename = os.path.join(os.path.dirname("__file__"), 'config.json')
@@ -61,7 +62,13 @@ class Passwords:
             if self.name == json_dict['title'].lower():
                 return json_dict
         return None
-        
+    
+    def get_custom(self, name):
+        custom = self.info['custom']
+        for value in custom:
+            if value['name'] == name:
+                return value['value']
+        return None
 
 class SQL:
     
