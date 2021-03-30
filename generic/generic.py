@@ -30,7 +30,7 @@ class Passwords:
     
     def __init__(self, name=None, custom=None):
         self.params = KeeperParams()
-        self.make_config_file()
+        #self.make_config_file()
         self.read_config_file()
         api.sync_down(self.params)
         self.name = name
