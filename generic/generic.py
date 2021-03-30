@@ -39,7 +39,7 @@ class Passwords:
         self.custom = self.get_custom(name=custom)
     
     def read_config_file(self):
-        self.params.config_filename = os.path.join(os.path.dirname("__file__"), 'config.json')
+        self.params.config_filename = os.path.join(os.path.dirname(sys.argv[0]), 'config.json')
         if os.path.isfile(self.params.config_filename):
             with open(self.params.config_filename, 'r') as f:
                 self.params.config = json.load(f)
