@@ -30,6 +30,7 @@ class Passwords:
     
     def __init__(self, name=None, custom=None):
         self.params = KeeperParams()
+        self.make_config_file()
         self.read_config_file()
         api.sync_down(self.params)
         self.name = name
@@ -39,8 +40,7 @@ class Passwords:
         self.custom = self.get_custom(name=custom)
     
     def read_config_file(self):
-        self.params.config_filename = os.path.join(os.path.dirname("__file__"), 'config.json')
-        print(self.params.config_filename)
+        self.params.config_filename = os.path.join(os.path.dirname(sys.argv[0]), 'config.json')
         if os.path.isfile(self.params.config_filename):
             with open(self.params.config_filename, 'r') as f:
                 self.params.config = json.load(f)
@@ -56,6 +56,16 @@ class Passwords:
                     device_id = base64.urlsafe_b64decode(self.params.config['device_id'] + '==')
                     self.params.rest_context.device_id = device_id
         return self.params
+    
+    def make_config_file(self):
+        config_file = os.path.join(os.path.dirname(sys.argv[0]), 'config.json')
+        if not os.path.exists(config_file):
+            user = input('KeeperPassword username:')
+            password = input('KeeperPassword password:')
+            json_dict = {"user":user, "password":password}
+            with open(config_file, 'w+') as f:
+                f.write(json_dict)
+                f.close()
 
     def get_login(self):
         for record in self.params.record_cache:
