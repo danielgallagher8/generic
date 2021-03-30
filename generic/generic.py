@@ -62,7 +62,7 @@ class Passwords:
         if not os.path.exists(config_file):
             user = input('KeeperPassword username:')
             password = input('KeeperPassword password:')
-            json_dict = {"user":user, "password":password}
+            json_dict = '{"user":"' + user + '", "password":"' + password + '"}'
             with open(config_file, 'w+') as f:
                 f.write(json_dict)
                 f.close()
