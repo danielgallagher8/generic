@@ -11,6 +11,7 @@ Generic classes for use in other scripts
 
 #Import relevant libraries
 
+import sys
 import pyodbc
 import os
 import json
@@ -126,8 +127,8 @@ class SQL:
 
 class Logging:
     
-    def __init__(self, logfile, filename):
-        self.logfile = logfile
+    def __init__(self, logfile=None, filename=sys.argv[0]):
+        self.logfile = logfile or self.logfile_name()
         self.filename = filename
         self.make_log_file()
 
@@ -137,6 +138,10 @@ class Logging:
         else:
             with open(self.logfile, "w") as f:
                 f.close()
+                
+    def logfile_name(self):
+        today = datetime.now().strftime('%Y%m%d')
+        return 'log_{}'.format(today)
 
     def log(self, error):
         time = datetime.now().strftime('%Y%m%d %H:%M:%S')
