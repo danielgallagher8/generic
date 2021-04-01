@@ -152,7 +152,7 @@ class Logging:
                 
     def logfile_name(self):
         today = datetime.now().strftime('%Y%m%d')
-        return 'log_{}'.format(today)
+        return 'log_{}.txt'.format(today)
 
     def log(self, error):
         time = datetime.now().strftime('%Y%m%d %H:%M:%S')
